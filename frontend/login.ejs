@@ -41,7 +41,7 @@
             });
 
             const responseData = await response.json();
-            if (!responseData.success) { alert(responseData.error); }
+            if (!responseData.success) { alert(responseData.msg); }
 
             // Optionally, you can redirect to a different page on successful login:
             // if (responseData.success) {

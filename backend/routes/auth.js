@@ -4,8 +4,8 @@ const router = express.Router()
 const db = require('../db')
 
 router.post('/login', [
-  body('email', "Enter a valid EmailId").notEmpty().isEmail(),
-  body('password', "Enter your Password").notEmpty().isStrongPassword()
+  body('email', "Enter a valid EmailId").notEmpty(),
+  body('password', "Enter your Password").notEmpty(),
 ], async (req, res) => {
   let success;
 
@@ -20,7 +20,7 @@ router.post('/login', [
 
       if (result.length === 0) {
         success = false;
-        res.json({ success: success, error: "User not found." })
+        res.json({ success: success, msg: "User not found." })
       }
       else {
         const user = result[0];
@@ -30,17 +30,17 @@ router.post('/login', [
         }
         else {
           success = false;
-          res.json({ success: success, error: "Password Invalid." })
+          res.json({ success: success, msg: "Password Invalid." })
         }
       }
     }
     else {
       success = false;
-      res.json({ success: success, error: validate.array() });
+      res.json({ success: success, msg: validate.array() });
     }
   } catch (error) {
     success = false;
-    res.json({ success: success, error: "Internal Server Error" })
+    res.json({ success: success, msg: "Internal Server Error" })
   }
 
 })
@@ -70,16 +70,16 @@ router.post('/register', [
         res.json({ success: success })
       }else{
         success=false;
-        res.json({success:success, error:"An user with this email already exists"})
+        res.json({success:success, msg:"An user with this email already exists"})
       }
     }
     else {
       success = false;
-      res.json({ success: success, error: validate.array() });
+      res.json({ success: success, msg: validate.array() });
     }
   } catch (error) {
     success = false;
-    res.json({ success: success, error: "Internal Server Error" })
+    res.json({ success: success, msg: "Internal Server Error" })
     console.log(error)
   }
 
