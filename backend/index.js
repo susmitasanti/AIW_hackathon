@@ -17,6 +17,9 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
 res.render('../../frontend/registration.ejs')
 })
+app.get('/login', (req, res) => {
+  res.render('../../frontend/login.ejs')
+  })
 app.use('/api', require('./routes/auth.js'));
 
 
