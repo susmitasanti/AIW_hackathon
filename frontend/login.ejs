@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <form action="login" method="POST" onsubmit="handleSubmit(event)">
+        <form onsubmit="handleSubmit(event)">
             <div class="mb-3 my-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
@@ -32,7 +32,7 @@
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
-            const response = await fetch("http://localhost:3000/api/login", {
+            const response = await fetch("http://localhost:3000/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json", // Set the content type to JSON
@@ -41,7 +41,12 @@
             });
 
             const responseData = await response.json();
-            if (!responseData.success) { alert(responseData.msg); }
+            if (!responseData.success) {
+                alert(responseData.msg);
+            } else {
+                alert("success");
+                window.location.href = "/api/dashboard";
+            }
 
             // Optionally, you can redirect to a different page on successful login:
             // if (responseData.success) {
