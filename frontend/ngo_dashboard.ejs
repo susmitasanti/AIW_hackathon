@@ -26,12 +26,15 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="http://localhost:3000/api/ngo-dashboard-delivered">Delivered</a>
           </li>
-          
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="d-flex mx-3">
+          <button type="submit" class="btn btn-success" onclick="logout()">Logout</button>
+      </div>
+        
       </div>
     </div>
   </nav>
@@ -90,6 +93,17 @@
             window.location.reload()
             
         }
+
+        function logout(){
+      const response = fetch("http://localhost:3000/auth/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", // Set the content type to JSON
+                },
+            });
+          
+            window.location.href="/login";
+          }
       </script>
 </body>
 

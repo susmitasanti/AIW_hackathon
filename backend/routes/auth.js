@@ -2,6 +2,8 @@ const express = require('express')
 const { validationResult, body } = require('express-validator');
 const router = express.Router()
 const db = require('../db');
+const {closeConnection}=require('../db')
+
 const { requireLogin } = require('../middleware/fetchuser');
 const {requireLogin_ngo } = require('../middleware/fetchuser_ngo')
 
@@ -179,4 +181,16 @@ router.get('/profile', requireLogin, async (req, res) => {
   console.log(result)
   res.json(result)
 })
+
+router.post('/logout', async function (req, res, next) {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+    }
+    closeConnection();
+    console.log("Chala byee")
+    
+  });
+})
+
 module.exports = router;

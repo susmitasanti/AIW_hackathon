@@ -240,6 +240,10 @@ router.get('/ngo-info', async (req, res) => {
     }
 })
 
+router.get('/donation-form', requireLogin, (req, res)=>{
+    res.render('../../frontend/donation_form.ejs')
+})
+
 
 
 
