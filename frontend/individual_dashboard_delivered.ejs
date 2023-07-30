@@ -22,13 +22,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="http://localhost:3000/api/dashboard">Requests</a>
+            <a class="nav-link" aria-current="page" href="http://localhost:3000/api/dashboard">Requests</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="http://localhost:3000/api/dashboard-acceptedRequests">Accepted</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="http://localhost:3000/api/dashboard-delivered">Delivered</a>
+            <a class="nav-link active" aria-current="page" href="http://localhost:3000/api/dashboard-delivered">Delivered</a>
           </li>
           
         </ul>
@@ -48,6 +48,7 @@
         <th scope="col">Type</th>
         <th scope="col">Quantity</th>
         <th scope="col">Status</th>
+        <th scope="col">NGO</th>
 
 
 
@@ -74,7 +75,26 @@
             <td>
               <%= user.status %>
             </td>
-         
+            <td>
+              <% if (user.status==='Accepted' || 'Delivered' ) { %>
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  onclick="View(this)" ngo_name="<% if (ngo && ngo.length > 0 && ngo[0].ngo_name) { %>
+                    <%= ngo[0].ngo_name %>
+                  <% } else { %>
+                    N/A 
+                  <% } %>" ngo_phone="<% if (ngo && ngo.length > 0 && ngo[0].ngo_name) { %>
+                    <%= ngo[0].phone %>
+                  <% } else { %>
+                    N/A 
+                  <% } %>" ngo_address="<% if (ngo && ngo.length > 0 && ngo[0].ngo_name) { %>
+                    <%= ngo[0].address %>
+                  <% } else { %>
+                    N/A 
+                  <% } %>" id="view">
+                  View
+                </button>
+                <% } %>
+            </td>
           </tr>
           <% }); %>
     </tbody>

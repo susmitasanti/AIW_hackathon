@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="http://localhost:3000/api/ngo-dashboard">Requests</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="http://localhost:3000/api/ngo-dashboard-acceptedRequests">Accepted</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="http://localhost:3000/api/ngo-dashboard-delivered">Delivered</a>
+          </li>
+          
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+    <table class="table table-striped">
+        <thead>
+          <tr class="table-dark">
+            <th scope="col">Sr No.</th>
+            <th scope="col">Email</th>
+            <th scope="col">Food</th>
+            <th scope="col">Type</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Cooked On</th>
+            <th scope="col">Cooked At</th>
+            <th scope="col">Action</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(function(user, index) { %>
+            <% const donor=donors[index]; %>
+
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td id="email<%= index %>"><%= user.email %></td>
+          <td id="food_name<%= index %>"><%= user.name %></td>
+          <td id="food_type<%= index %>"><%= user.type %></td>
+          <td id="food_quantity<%= index %>"><%= user.quantity %></td>
+          <td id="cooked_on<%= index %>"><%= user.cooked_on %></td>
+          <td id="cooked_at<%= index %>"><%= user.cooked_at %></td>
+          <td id="ngo<%= index %>"><%= user.ngo %></td>
+
+          <td>
+                <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  onclick="View(this)" donor_name="<% if (donor && donor.length > 0 && donor[0].name) { %>
+                    <%= donor[0].name %>
+                  <% } else { %>
+                    N/A 
+                  <% } %>" donor_email="<% if (donor && donor.length > 0 && donor[0].name) { %>
+                    <%= donor[0].email %>
+                  <% } else { %>
+                    N/A 
+                  <% } %>"  donor_phone="<% if (donor && donor.length > 0 && donor[0].name) { %>
+                    <%= donor[0].phone %>
+                  <% } else { %>
+                    N/A 
+                  <% } %>" donor_address="<% if (donor && donor.length > 0 && donor[0].name) { %>
+                    <%= donor[0].address %>
+                  <% } else { %>
+                    N/A 
+                  <% } %>" id="view" index_no="<%= index %>">
+                  View
+                </button>
+        </tr>
+        <% }); %>
+
+      </tbody>
+      </table>
+      <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Donor Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <h5 class="fw-bold">Name:</h5>
+            <p id="modal-donor-name"></p>
+          </div>
+          <div>
+            <h5 class="fw-bold">Email:</h5>
+            <p id="modal-donor-email"></p>
+          </div>
+          <div>
+            <h5 class="fw-bold">Phone:</h5>
+            <p id="modal-donor-phone"></p>
+          </div>
+          <div>
+            <h5 class="fw-bold">Address:</h5>
+            <p id="modal-donor-address"></p>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" onclick="Delivered(this)" id="delivered">Delivered</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let index_no;
+    function View(button) {
+      const modal_donor_name = document.getElementById("modal-donor-name")
+      const modal_donor_email = document.getElementById("modal-donor-email")
+      const modal_donor_phone = document.getElementById("modal-donor-phone")
+      const modal_donor_address = document.getElementById("modal-donor-address")
+      const donor_name = button.getAttribute('donor_name')
+      const donor_email = button.getAttribute('donor_email')
+      const donor_phone = button.getAttribute('donor_phone')
+      const donor_address = button.getAttribute('donor_address')
+      index_no=button.getAttribute('index_no')
+
+      console.log(modal_donor_name)
+      console.log(donor_name)
+      modal_donor_name.innerHTML = donor_name
+      modal_donor_email.innerHTML = donor_email
+
+      modal_donor_phone.innerHTML = donor_phone
+      modal_donor_address.innerHTML = donor_address
+
+
+    }
+
+    async function Delivered(button){
+        console.log("Delivered")
+        console.log("index:"+index_no)
+       
+
+
+        const donor_email = document.getElementById("email"+index_no).innerText
+      const food_name = document.getElementById("food_name"+index_no).innerText
+      const food_type = document.getElementById("food_type"+index_no).innerText
+      const food_quantity = document.getElementById("food_quantity"+index_no).innerText
+      const cooked_on = document.getElementById("cooked_on"+index_no).innerText
+      const cooked_at = document.getElementById("cooked_at"+index_no).innerText
+
+      
+    try {
+      const response = await fetch(`http://localhost:3000/api/delivered?email=${donor_email}&food_name=${food_name}&food_type=${food_type}&quantity=${food_quantity}&cooked_on=${cooked_on}&cooked_at=${cooked_at}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Set the content type to JSON
+        },
+        // ... (if you need to send any data in the request body)
+      });
+
+      if (response.ok) {
+        console.log("Delivery status updated successfully.");
+        window.location.reload();
+      } else {
+        console.error("Failed to update delivery status.");
+      }
+    } catch (error) {
+      console.error("An error occurred while updating delivery status:", error);
+    }
+    window.location.reload();
+
+
+
+
+    }
+  </script>
+
+</body>
+
+</html>
