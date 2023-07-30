@@ -43,7 +43,7 @@
         
 
         <div class="d-flex mx-3">
-            <button type="submit" class="btn btn-success" onclick="logout()">Logout</button>
+            <button type="submit" class="btn btn-outline-success" onclick="logout()">Logout</button>
         </div>
       </div>
     </div>
@@ -56,6 +56,8 @@
         <th scope="col">Name</th>
         <th scope="col">Type</th>
         <th scope="col">Quantity</th>
+        <th scope="col">Cooked On</th>
+        <th scope="col">Cooked At</th>
         <th scope="col">Status</th>
 
 
@@ -79,6 +81,12 @@
             </td>
             <td>
               <%= user.quantity %>
+            </td>
+            <td>
+              <%= user.cooked_on %>
+            </td>
+            <td>
+              <%= user.cooked_at %>
             </td>
             <td>
               <%= user.status %>

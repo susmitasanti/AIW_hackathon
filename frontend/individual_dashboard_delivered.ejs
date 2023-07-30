@@ -40,7 +40,7 @@
           </form>
         </ul>
         <div class="d-flex mx-3">
-          <button type="submit" class="btn btn-success" onclick="logout()">Logout</button>
+          <button type="submit" class="btn btn-outline-success" onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
@@ -52,6 +52,8 @@
         <th scope="col">Name</th>
         <th scope="col">Type</th>
         <th scope="col">Quantity</th>
+        <th scope="col">Cooked On</th>
+        <th scope="col">Cooked At</th>
         <th scope="col">Status</th>
         <th scope="col">NGO</th>
 
@@ -78,11 +80,17 @@
               <%= user.quantity %>
             </td>
             <td>
+              <%= user.cooked_on %>
+            </td>
+            <td>
+              <%= user.cooked_at %>
+            </td>
+            <td>
               <%= user.status %>
             </td>
             <td>
               <% if (user.status==='Accepted' || 'Delivered' ) { %>
-                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                <button type="submit" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
                   onclick="View(this)" ngo_name="<% if (ngo && ngo.length > 0 && ngo[0].ngo_name) { %>
                     <%= ngo[0].ngo_name %>
                   <% } else { %>

@@ -36,7 +36,7 @@
           </form>
         </ul>
         <div class="d-flex mx-3">
-          <button type="submit" class="btn btn-success" onclick="logout()">Logout</button>
+          <button type="submit" class="btn btn-outline-success" onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
@@ -70,7 +70,7 @@
           <td id="ngo<%= index %>"><%= user.ngo %></td>
 
           <td>
-                <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                <button type="submit" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
                   onclick="View(this)" donor_name="<% if (donor && donor.length > 0 && donor[0].name) { %>
                     <%= donor[0].name %>
                   <% } else { %>

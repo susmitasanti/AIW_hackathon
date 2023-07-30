@@ -32,7 +32,7 @@
           </form>
         </ul>
         <div class="d-flex mx-3">
-          <button type="submit" class="btn btn-success" onclick="logout()">Logout</button>
+          <button type="submit" class="btn btn-outline-success" onclick="logout()">Logout</button>
       </div>
         
       </div>
@@ -65,7 +65,7 @@
           <td><%= user.cooked_on %></td>
           <td><%= user.cooked_at %></td>
           <td>
-            <button type="submit" class="btn btn-success" onclick="Accept(this)" email="<%= user.email %>" food_name="<%= user.name %>" food_type="<%= user.type %>" quantity="<%= user.quantity %>" cooked_on="<%= user.cooked_on %>" cooked_at="<%= user.cooked_at %>" id="accept">Accept</button>
+            <button type="submit" class="btn btn-outline-success" onclick="Accept(this)" email="<%= user.email %>" food_name="<%= user.name %>" food_type="<%= user.type %>" quantity="<%= user.quantity %>" cooked_on="<%= user.cooked_on %>" cooked_at="<%= user.cooked_at %>" id="accept">Accept</button>
             <!-- <button type="submit" class="btn btn-danger" onclick="Reject(this)">Reject</button> -->
 
           </td>

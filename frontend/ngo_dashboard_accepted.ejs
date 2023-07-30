@@ -38,7 +38,7 @@
           </form>
         </ul>
         <div class="d-flex mx-3">
-          <button type="submit" class="btn btn-success" onclick="logout()">Logout</button>
+          <button type="submit" class="btn btn-outline-success" onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
@@ -52,6 +52,7 @@
         <th scope="col">Quantity</th>
         <th scope="col">Cooked On</th>
         <th scope="col">Cooked At</th>
+        <th scope="col">Donor</th>
         <th scope="col">Action</th>
 
       </tr>
@@ -82,12 +83,10 @@
             <td id="cooked_at<%= index %>">
               <%= user.cooked_at %>
             </td>
-            <td id="ngo<%= index %>">
-              <%= user.ngo %>
-            </td>
+            
 
             <td>
-              <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              <button type="submit" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 onclick="View(this)" donor_name="<% if (donor && donor.length > 0 && donor[0].name) { %>
                     <%= donor[0].name %>
                   <% } else { %>
@@ -107,6 +106,11 @@
                   <% } %>" id="view" index_no="<%= index %>">
                 View
               </button>
+            </td>
+            <td>
+              <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="Delivered(this)"
+            id="delivered" index_no="<%= index %>">Delivered</button>
+            </td>
           </tr>
           <% }); %>
 
@@ -140,8 +144,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" onclick="Delivered(this)"
-            id="delivered">Delivered</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -171,12 +174,10 @@
 
     }
 
-    async function Delivered(button) {
+    function Delivered(button) {
       console.log("Delivered")
+      const index_no = button.getAttribute('index_no')
       console.log("index:" + index_no)
-
-
-
       const donor_email = document.getElementById("email" + index_no).innerText
       const food_name = document.getElementById("food_name" + index_no).innerText
       const food_type = document.getElementById("food_type" + index_no).innerText
@@ -185,29 +186,13 @@
       const cooked_at = document.getElementById("cooked_at" + index_no).innerText
 
 
-      try {
-        const response = await fetch(`http://localhost:3000/api/delivered?email=${donor_email}&food_name=${food_name}&food_type=${food_type}&quantity=${food_quantity}&cooked_on=${cooked_on}&cooked_at=${cooked_at}`, {
+        const response = fetch(`http://localhost:3000/api/delivered?email=${donor_email}&food_name=${food_name}&food_type=${food_type}&quantity=${food_quantity}&cooked_on=${cooked_on}&cooked_at=${cooked_at}`, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json", // Set the content type to JSON
+            "Content-Type": "application/json", 
           },
-          // ... (if you need to send any data in the request body)
         });
-
-        if (response.ok) {
-          console.log("Delivery status updated successfully.");
-          window.location.reload();
-        } else {
-          console.error("Failed to update delivery status.");
-        }
-      } catch (error) {
-        console.error("An error occurred while updating delivery status:", error);
-      }
-      window.location.reload();
-
-
-
-
+        window.location.reload();
     }
 
     function logout() {

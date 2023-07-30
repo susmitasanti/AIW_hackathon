@@ -110,8 +110,8 @@
       const food_name = document.getElementById("name").value;
       const quantity = document.getElementById("quantity").value;
       const shelf_life = document.getElementById("shelf_life").value;
-      const cooked_on=document.getElementById("cooked_on");
-      const cooked_at=document.getElementById("cooked_at")
+      const cooked_on=document.getElementById("cooked_on").value;
+      const cooked_at=document.getElementById("cooked_at").value
       
       const vegRadio = document.getElementById("vegRadio")
       const nonVegRadio = document.getElementById("nonVegRadio")
@@ -128,7 +128,19 @@
                 },
                 body: JSON.stringify({ quantity: quantity, name: food_name, type:selected_type, shelf_life: shelf_life, cooked_on:cooked_on, cooked_at:cooked_at })
             });
-         alert("done")
+            if(response.ok){
+              document.getElementById("name").value = "";
+      document.getElementById("quantity").value = "";
+      document.getElementById("vegRadio").checked = true;
+      document.getElementById("shelf_life").value = "";
+      document.getElementById("cooked_on").value = "";
+      document.getElementById("cooked_at").value = "";
+      alert("Form submitted successfully!");
+            }
+            else{
+              alert("Form submission failed!")
+
+            }
     }
 
     function logout(){
