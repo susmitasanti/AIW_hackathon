@@ -31,7 +31,7 @@
       padding: 20px;
       border-radius: 30px;
       box-shadow: 10px 10px 5px 5px #5898b8;
-      align-items: relative;
+      align-items: center;
     }
   </style>
 </head>
@@ -67,6 +67,9 @@
       </div>
     </div>
   </nav>
+  <div class="myalert">
+
+  </div>
 
   <div class="container mt-5 myclass my-0">
     <div class="card-body">
@@ -104,44 +107,74 @@
   </div>
 
   <script>
-    const handleSubmit= async (event)=>{
+    const handleSubmit = async (event) => {
       event.preventDefault();
       let selected_type;
       const food_name = document.getElementById("name").value;
       const quantity = document.getElementById("quantity").value;
       const shelf_life = document.getElementById("shelf_life").value;
-      const cooked_on=document.getElementById("cooked_on").value;
-      const cooked_at=document.getElementById("cooked_at").value
-      
-      const vegRadio = document.getElementById("vegRadio")
-      const nonVegRadio = document.getElementById("nonVegRadio")
-      if(vegRadio.checked){
-        selected_type=vegRadio.value;
-      }else if(nonVegRadio.checked){
-        selected_type=nonVegRadio.value;
+      const cooked_on = document.getElementById("cooked_on").value;
+      const cooked_at = document.getElementById("cooked_at").value;
+  
+      const vegRadio = document.getElementById("vegRadio");
+      const nonVegRadio = document.getElementById("nonVegRadio");
+      if (vegRadio.checked) {
+        selected_type = vegRadio.value;
+      } else if (nonVegRadio.checked) {
+        selected_type = nonVegRadio.value;
       }
-
+  
       const response = await fetch("http://localhost:3000/api/donate", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json", // Set the content type to JSON
-                },
-                body: JSON.stringify({ quantity: quantity, name: food_name, type:selected_type, shelf_life: shelf_life, cooked_on:cooked_on, cooked_at:cooked_at })
-            });
-            if(response.ok){
-              document.getElementById("name").value = "";
-      document.getElementById("quantity").value = "";
-      document.getElementById("vegRadio").checked = true;
-      document.getElementById("shelf_life").value = "";
-      document.getElementById("cooked_on").value = "";
-      document.getElementById("cooked_at").value = "";
-      alert("Form submitted successfully!");
-            }
-            else{
-              alert("Form submission failed!")
-
-            }
-    }
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          quantity: quantity,
+          name: food_name,
+          type: selected_type,
+          shelf_life: shelf_life,
+          cooked_on: cooked_on,
+          cooked_at: cooked_at,
+        }),
+      });
+  
+      if (response.ok) {
+        document.getElementById("name").value = "";
+        document.getElementById("quantity").value = "";
+        document.getElementById("vegRadio").checked = true;
+        document.getElementById("shelf_life").value = "";
+        document.getElementById("cooked_on").value = "";
+        document.getElementById("cooked_at").value = "";
+  
+        // Create a Bootstrap alert element
+        const successMessage = document.createElement("div");
+        successMessage.classList.add("alert", "alert-success", "my-3");
+        successMessage.setAttribute("role", "alert");
+        successMessage.textContent = "Form Submitted Successfully";
+  
+        // Append the alert to the form container
+        document.querySelector(".myalert").appendChild(successMessage);
+  
+        // Remove the alert after 2 seconds (2000ms)
+        setTimeout(() => {
+          successMessage.remove();
+        }, 1000);
+      } else {
+        const successMessage = document.createElement("div");
+        successMessage.classList.add("alert", "alert-danger", "my-3");
+        successMessage.setAttribute("role", "alert");
+        successMessage.textContent = "Form Submission Failed";
+  
+        // Append the alert to the form container
+        document.querySelector(".myalert").appendChild(successMessage);
+  
+        // Remove the alert after 2 seconds (2000ms)
+        setTimeout(() => {
+          successMessage.remove();
+        }, 1000);
+      }
+    };
 
     function logout(){
       const response = fetch("http://localhost:3000/auth/logout", {

@@ -29,14 +29,14 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
   res.render('../../frontend/login.ejs')
 })
-
+app.get('/ngo-register', (req, res)=>{
+  res.render('../../frontend/ngo_registration.ejs')
+})
 app.get('/ngo-login', (req, res) => {
-  res.render('../../frontend/ngo_login.ejs')
+  res.render('../../frontend/login_ngo.ejs')
 })
 
-app.get('/ngo-dashboard', (req, res) => {
-  res.render('../../frontend/ngo_dashboard.ejs')
-})
+
 
 
 

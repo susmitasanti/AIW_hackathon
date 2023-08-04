@@ -72,7 +72,7 @@ router.post('/register', [
           `INSERT INTO registration (name, email, phone, address, city, password) VALUES ('${req.body.name}','${req.body.email}','${req.body.phone}','${req.body.address}','${req.body.city}','${req.body.password}')`
         );
         success = true;
-        res.json({ success: success })
+        res.json({ success: success, msg:"Registered" })
       } else {
         success = false;
         res.json({ success: success, msg: "An user with this email already exists" })
