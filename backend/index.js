@@ -48,7 +48,11 @@ app.use('/uploads', express.static('uploads'));
 
 
 app.get('/', (req, res) => {
+  res.render('../../frontend/homepage.ejs')
+})
+app.get('/register', (req, res)=>{
   res.render('../../frontend/registration.ejs')
+
 })
 app.get('/login', (req, res) => {
   res.render('../../frontend/login.ejs')
