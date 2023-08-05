@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+   
+    <title>SharePlateful</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+      *{
+    font-family: montserrat;
+
+}
+body{
+    background: #f1fbff;
+}
+.section-padding{
+    padding: 100px 0;
+
+}
+.carousel-item{
+    height: 100vh;
+    min-height: 300px;
+}
+.carousel-caption{
+    bottom: 220px;
+    z-index: 2;
+}
+.carousel-caption h5{
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 25px;
+}
+.carousel-caption p{
+    width: 60%;
+    margin: auto;
+    line-height: 1.9;
+}
+.carousel-inner::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+}
+navbar-nav a{
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+    
+}
+.navbar-light .navbar-brand{
+    color: #000;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+}
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover{
+    color: #91f199;
+}
+.navbar-light .navbar-nav .navbar-link{
+    color: #91f199;
+}
+w-100{
+    height: 100v;
+}
+
+.services .card-body i{
+    font-size: 50px;
+}
+.btn{
+    background-color: #91f199;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.carousel-caption {
+		bottom: 370px;
+	}
+	.carousel-caption p {
+		width: 100%;
+	}}
+@media only screen and (max-width:767px) {
+    
+        .navbar-nav {
+            text-align: center;
+        }
+        .carousel-caption {
+            bottom: 125px;
+        }
+        .carousel-caption h5 {
+            font-size: 17px;
+        }
+        .carousel-caption a {
+            padding: 10px 15px;
+            font-size: 15px;
+        }
+        .carousel-caption p {
+            width: 100%;
+            line-height: 1.6;
+            font-size: 12px;
+        }
+    
+}
+
+    </style>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand" href="#" style="color: #91f199;"><span class="text-warning">Share</span>Plateful</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="#home">Home</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#home">Home</a>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#login
+            " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Login
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Donor</a></li>
+              <li><a class="dropdown-item" href="#">NGO</a></li>
+          
+              <!-- <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#login
+            " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Register
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Donor</a></li>
+              <li><a class="dropdown-item" href="#">NGO</a></li>
+          
+              <!-- <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            </ul>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li> -->
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="img\party.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption">
+          <h5>Planning Delicious Meals</h5>
+          <p>Never throw food away because some people go to bed empty-handed.</p>
+          <p><a href="#" class="btn btn-warning mt-3">Learn More</a></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img\food_all.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption">
+          <p><a href="#" class="btn btn-warning mt-3">Learn More</a></p>
+          <!-- <h5>Tired of Wasting Food?</h5>
+          <p>Don't waste food because so many needy hands are waiting for it, sleeping with empty Stomach.</p> -->
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/girl.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption">
+          <h5>Want to see more such smiling faces!! </h5>
+          <p>Donate Food...</p>
+          <p><a href="#" class="btn btn-warning mt-3">Donate Food Now</a></p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<section id="about" class="about-section-padding">
+  <div class="container">
+    <div class="row">
+      
+        <!-- <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5"> -->
+          <div class="col-md-12 col-12 ps-lg-5 mt-md-5">
+          <div style="background-color: #91f199;text-align: center;">
+        <h2>“If you can’t feed a hundred people; then just feed one.“ <br></h2>
+        <h2 style="font-style: italic;font-weight: bold;">Mother Teresa</h2>
+      </div>
+        <p style="font-size: 20px;text-align: left;">Our application attempts to bridge the gap between surplus food from eateries and the less fortunate members of society. It connects food givers with local non-profits and volunteers to ensure that extra food is distributed to those in need. Food donors can use the app to provide information about the quantity and shelf life of the food, and NGOs in the area can subsequently collect and deliver the food to the intended beneficiaries.
+        </p>
+        </div>
+      
+    </div>
+  </div>
+</section>
+<section id="services" class="services section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-header text-center pb-5">
+          <h2>Our Services</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-4">
+          <div class="card text-white text-center bg-dark pb-2">
+          <div class="card-body">
+            <i class="bi bi-award-fill" style="font-size: 50px;color: #91f199;"></i>
+            <h3 class="card-title">Quality check</h3>
+            <p class="lead">It allows food donors to submit specific information on the quantity and shelf life of their surplus food. This function assists NGOs and volunteers in determining the feasibility of collecting and delivering food.</p>
+          </div>
+
+         </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-4">
+        <div class="card text-white text-center bg-dark pb-2">
+        <div class="card-body">
+          <i class="bi bi-playstation" style="font-size: 50px;color: #91f199;"></i>
+          <h3 class="card-title">NGO Integrity</h3>
+          <p class="lead">It distinguishes itself by providing a direct link between food givers and neighbouring NGOs/volunteers. This local integration guarantees that extra food is gathered and supplied efficiently to the designated beneficiaries.
+          </p>
+        </div>
+
+       </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-4">
+      <div class="card text-white text-center bg-dark pb-2">
+      <div class="card-body">
+        <i class="bi bi-slack " style="font-size: 50px;color: #91f199;"></i>
+        <h3 class="card-title">Sustainability</h3>
+        <p class="lead">This feature focuses on reducing food waste by facilitating the donation of excess food to those in need and encouraging users to share surplus food with their local community by integration with NGO's. 
+        </p>
+      </div>
+
+     </div>
+  </div>
+    </div>
+  
+</section>
+</body>
+    
+
+</head>
+</html>
