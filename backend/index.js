@@ -21,6 +21,8 @@ app.use(cors());
 
 const ejs = require('ejs');
 app.set('view engine', 'ejs');
+app.use(express.static('../frontend'));
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
