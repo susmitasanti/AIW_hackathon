@@ -26,22 +26,22 @@ router.get('/dashboard', requireLogin, async (req, res) => {
     try {
         const result = await db.query(
             `SELECT quantity, name, type, shelf_life, cooked_on, cooked_at, status, ngo FROM food WHERE email='${req.session.email}' AND status='Requested'`
-          );
-          
-          const ngosData = []; // Create an array to store the result1 data for each ngo
-          
-          for (const row of result) {
+        );
+
+        const ngosData = []; // Create an array to store the result1 data for each ngo
+
+        for (const row of result) {
             const ngo = row.ngo;
             const result1 = await db.query(
-              `SELECT ngo_name, phone, address, city FROM ngo_registration WHERE username='${ngo}'`
+                `SELECT ngo_name, phone, address, city FROM ngo_registration WHERE username='${ngo}'`
             );
             ngosData.push(result1); // Store the result1 data for each ngo in the array
-          }
-          
-          console.log("ngos", ngosData); // Log the array of ngosData for verification
-          success = true;
-          res.render('../../frontend/individual_dashboard.ejs', { users: result, ngos: ngosData });
-          
+        }
+
+        console.log("ngos", ngosData); // Log the array of ngosData for verification
+        success = true;
+        res.render('../../frontend/individual_dashboard.ejs', { users: result, ngos: ngosData });
+
 
     } catch (error) {
         success = false;
@@ -55,22 +55,22 @@ router.get('/dashboard-acceptedRequests', requireLogin, async (req, res) => {
     try {
         const result = await db.query(
             `SELECT quantity, name, type, shelf_life, cooked_on, cooked_at, status, ngo FROM food WHERE email='${req.session.email}' AND status='Accepted'`
-          );
-          
-          const ngosData = []; // Create an array to store the result1 data for each ngo
-          
-          for (const row of result) {
+        );
+
+        const ngosData = []; // Create an array to store the result1 data for each ngo
+
+        for (const row of result) {
             const ngo = row.ngo;
             const result1 = await db.query(
-              `SELECT ngo_name, phone, address, city FROM ngo_registration WHERE username='${ngo}'`
+                `SELECT ngo_name, phone, address, city FROM ngo_registration WHERE username='${ngo}'`
             );
             ngosData.push(result1); // Store the result1 data for each ngo in the array
-          }
-          
-          console.log("ngos", ngosData); // Log the array of ngosData for verification
-          success = true;
-          res.render('../../frontend/individual_dashboard_accepted.ejs', { users: result, ngos: ngosData });
-          
+        }
+
+        console.log("ngos", ngosData); // Log the array of ngosData for verification
+        success = true;
+        res.render('../../frontend/individual_dashboard_accepted.ejs', { users: result, ngos: ngosData });
+
 
     } catch (error) {
         success = false;
@@ -84,22 +84,22 @@ router.get('/dashboard-delivered', requireLogin, async (req, res) => {
     try {
         const result = await db.query(
             `SELECT quantity, name, type, shelf_life, cooked_on, cooked_at, status, ngo FROM food WHERE email='${req.session.email}' AND status='Delivered'`
-          );
-          
-          const ngosData = []; // Create an array to store the result1 data for each ngo
-          
-          for (const row of result) {
+        );
+
+        const ngosData = []; // Create an array to store the result1 data for each ngo
+
+        for (const row of result) {
             const ngo = row.ngo;
             const result1 = await db.query(
-              `SELECT ngo_name, phone, address, city FROM ngo_registration WHERE username='${ngo}'`
+                `SELECT ngo_name, phone, address, city FROM ngo_registration WHERE username='${ngo}'`
             );
             ngosData.push(result1); // Store the result1 data for each ngo in the array
-          }
-          
-          console.log("ngos", ngosData); // Log the array of ngosData for verification
-          success = true;
-          res.render('../../frontend/individual_dashboard_delivered.ejs', { users: result, ngos: ngosData });
-          
+        }
+
+        console.log("ngos", ngosData); // Log the array of ngosData for verification
+        success = true;
+        res.render('../../frontend/individual_dashboard_delivered.ejs', { users: result, ngos: ngosData });
+
 
     } catch (error) {
         success = false;
@@ -121,7 +121,7 @@ router.get('/ngo-dashboard', requireLogin_ngo, async (req, res) => {
 
         success = true
         console.log(req.session.username)
-        res.render('../../frontend/ngo_dashboard.ejs', { users: result})
+        res.render('../../frontend/ngo_dashboard.ejs', { users: result })
 
     } catch (error) {
         success = false;
@@ -134,7 +134,7 @@ router.post('/accept', requireLogin_ngo, (req, res) => {
     let success;
     try {
         const result = db.query(`UPDATE food SET status='Accepted', ngo='${req.session.username}' WHERE email='${req.query.email}' AND name='${req.query.food_name}' AND type='${req.query.food_type}' AND quantity='${req.query.quantity}' AND cooked_on='${req.query.cooked_on}' AND cooked_at='${req.query.cooked_at}' AND status='Requested';`)
-        
+
         success = true
         console.log("Accepted")
         console.log(req.session.username)
@@ -152,7 +152,7 @@ router.post('/delivered', requireLogin_ngo, (req, res) => {
     let success;
     try {
         const result = db.query(`UPDATE food SET status='Delivered', ngo='${req.session.username}' WHERE email='${req.query.email}' AND name='${req.query.food_name}' AND type='${req.query.food_type}' AND quantity='${req.query.quantity}' AND cooked_on='${req.query.cooked_on}' AND cooked_at='${req.query.cooked_at}' AND status='Accepted';`)
-        
+
         success = true
         console.log("Accepted")
         console.log(req.query.email)
@@ -182,10 +182,10 @@ router.get('/ngo-dashboard-acceptedRequests', requireLogin_ngo, async (req, res)
         for (const row of result) {
             const donor = row.email;
             const result2 = await db.query(
-              `SELECT name, email, phone, address, city FROM registration WHERE email='${donor}'`
+                `SELECT name, email, phone, address, city FROM registration WHERE email='${donor}'`
             );
             donorData.push(result2); // Store the result1 data for each ngo in the array
-          }
+        }
         success = true
         console.log(req.session.username)
         res.render('../../frontend/ngo_dashboard_accepted.ejs', { users: result, donors: donorData })
@@ -211,10 +211,10 @@ router.get('/ngo-dashboard-delivered', requireLogin_ngo, async (req, res) => {
         for (const row of result) {
             const donor = row.email;
             const result2 = await db.query(
-              `SELECT name, email, phone, address, city FROM registration WHERE email='${donor}'`
+                `SELECT name, email, phone, address, city FROM registration WHERE email='${donor}'`
             );
             donorData.push(result2); // Store the result1 data for each ngo in the array
-          }
+        }
         success = true
         console.log(req.session.username)
         res.render('../../frontend/ngo_dashboard_delivered.ejs', { users: result, donors: donorData })
@@ -240,9 +240,76 @@ router.get('/ngo-info', async (req, res) => {
     }
 })
 
-router.get('/donation-form', requireLogin, (req, res)=>{
+router.get('/donation-form', requireLogin, (req, res) => {
     res.render('../../frontend/donation_form.ejs')
 })
+
+router.get('/profile', requireLogin, async (req, res) => {
+    let success;
+    try {
+        const result = await db.query(
+            `SELECT * FROM registration WHERE email='${req.session.email}';`
+        );
+        success = true
+        console.log(req.session.email)
+        res.render('../../frontend/profile_page.ejs', { users: result })
+
+    } catch (error) {
+        success = false;
+        console.log(error)
+        res.json({ success: success, msg: "Internal Server Error" })
+    }
+})
+
+router.get('/ngo-profile', requireLogin_ngo, async (req, res) => {
+    let success;
+    try {
+        const result = await db.query(
+            `SELECT * FROM ngo_registration WHERE username='${req.session.username}';`
+        );
+        success = true
+        console.log(req.session.username)
+        res.render('../../frontend/ngo_profile.ejs', { users: result })
+
+    } catch (error) {
+        success = false;
+        console.log(error)
+        res.json({ success: success, msg: "Internal Server Error" })
+    }
+})
+
+router.post('/change-profile', requireLogin, async (req, res)=>{
+    let success;
+    try{
+        const result = await db.query(
+            `UPDATE registration SET name='${req.body.name}',phone='${req.body.phone}',address='${req.body.address}',city='${req.body.city}', password='${req.body.password}' where email='${req.session.email}' `
+        )
+        success=true;
+        res.json({success:success})
+    }catch(error){
+        success=false;
+        res.json({success:success, msg:"Changing Failed!!"})
+
+    }
+})
+
+router.post('/ngo-change-profile', requireLogin_ngo, async (req, res)=>{
+    let success;
+    try{
+        const result = await db.query(
+            `UPDATE ngo_registration SET ngo_name='${req.body.name}',phone='${req.body.phone}',address='${req.body.address}',city='${req.body.city}', password='${req.body.password}' where username='${req.session.username}' `
+        )
+        success=true;
+        res.json({success:success})
+    }catch(error){
+        success=false;
+        res.json({success:success, msg:"Changing Failed!!"})
+
+    }
+})
+
+
+
 
 
 

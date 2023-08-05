@@ -163,7 +163,8 @@ router.post('/ngo-register', [
     }
     else {
       success = false;
-      res.json({ success: success, msg: validate.array() });
+      res.json({ success: success, msg: "Enter a Strong Password" })
+      console.log(validate.array())
     }
   } catch (error) {
     success = false;

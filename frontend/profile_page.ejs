@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+     .myclass {
+            justify-content: center;
+            height: relative;
+            width: 500px;
+            background-color: #a8dadc;
+            color: black;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 5px 5px #1d3557;
+            align-items: relative;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        .myclass h4 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            
+        }
+
+        .form-control {
+            border: 1px solid #1d3557;
+            border-radius: 10px;
+            padding: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(29, 53, 87, 0.5);
+            border-color: #1d3557;
+        }
+
+        .btn-primary {
+            background-color: #1d3557;
+            border-color: #1d3557;
+            width: 100%;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d3557;
+            border-color: #1d3557;
+            opacity: 0.8;
+        }
+
+        .myalert {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="page" href="http://localhost:3000/api/dashboard">Requests</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-white" href="http://localhost:3000/api/dashboard-acceptedRequests">Accepted</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="page" href="http://localhost:3000/api/dashboard-delivered">Delivered</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="page" href="http://localhost:3000/api/donation-form">Donation Form</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="page" href="http://localhost:3000/api/profile">Profile</a>
+              </li>
+    
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </ul>
+            <div class="d-flex mx-3">
+              <button type="submit" class="btn btn-outline-success" onclick="logout()">Logout</button>
+            </div>
+          </div>
+      </nav>
+    
+    <div class="myalert">
+
+    </div>
+    <div class="container mt-5 myclass my-0" align="center">
+        <h4>My Profile</h4>
+
+        <!-- <div class="user-info">
+            <label for="profilePic">Profile Picture:</label>
+            <input type="file" id="profilePic" accept="image/*">
+            <img class="profile-pic" id="profilePicPreview" src="#">
+        </div> -->
+        <!-- <button class="ubtn" onclick="uploadProfilePic()">Upload</button> -->
+        <% users.forEach(function(user, index) { %>
+            <div class="form-group">
+            <div class="user-info">
+                <label for="username">Name:</label>
+                <span id="usernameSpan">
+                    <%= user.name %>
+                </span>
+                <i class="bi bi-pencil-square" onclick="edit('username')"></i>
+                <input type="text" id="usernameInput" class="edit-input" value="<%= user.name %>"
+                    style="display: none;">
+            </div>
+            </div>
+
+            <div class="form-group">
+            <div class="user-info">
+                <label for="address">Address:</label>
+                <span id="addressSpan">
+                    <%= user.address %>
+                </span>
+                <i class="bi bi-pencil-square" onclick="edit('address')"></i>
+                <input type="text" id="addressInput" class="edit-input" value="<%= user.address %>"
+                    style="display: none;">
+            </div>
+            </div>
+            
+            <div class="form-group">
+            <div class="user-info">
+                <label for="city">City:</label>
+                <span id="citySpan">
+                    <%= user.city %>
+                </span>
+                <i class="bi bi-pencil-square" onclick="edit('city')"></i>
+                <input type="text" id="cityInput" class="edit-input" value="<%= user.city %>" style="display: none;">
+            </div>
+            </div>
+
+            <div class="form-group">
+            <div class="user-info">
+                <label for="contact">Contact no:</label>
+                <span id="contactSpan">
+                    <%= user.phone %>
+                </span>
+                <i class="bi bi-pencil-square" onclick="edit('contact')"></i>
+                <input type="text" id="contactInput" class="edit-input" value="<%= user.phone %>"
+                    style="display: none;">
+            </div>
+            </div>
+
+            <div class="form-group">
+            <div class="user-info">
+                <label for="password">Change Password</label>
+                <span id="passwordSpan">
+                </span>
+                <i class="bi bi-pencil-square" onclick="edit('password')"></i>
+                <input type="password" id="passwordInput" class="edit-input"
+                    style="display: none;">
+            </div>
+            </div>
+
+            <% }); %>
+
+                <button class="btn btn-primary save-btn" style="background-color: #264653;" onclick="saveChanges()">Save Changes</button>
+    </div>
+    <script>
+        async function fetchProfilePic() {
+            try {
+                const response = await fetch('/api/user/profile-pic');
+                if (response.ok) {
+                    const data = await response.json();
+                    const profilePicPreview = document.getElementById('profilePicPreview');
+                    profilePicPreview.src = data.filePath;
+                }
+            } catch (error) {
+                console.error('Error fetching profile picture:', error);
+            }
+        }
+
+        function previewImage(event) {
+            const profilePicPreview = document.getElementById('profilePicPreview');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                profilePicPreview.src = reader.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        async function uploadProfilePic() {
+            const fileInput = document.getElementById('profilePic');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                console.error('No file selected.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('profilePic', file);
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    localStorage.setItem('profilePicPath', data.filePath);
+                    const profilePicPreview = document.getElementById('profilePicPreview');
+                    profilePicPreview.src = data.filePath;
+                } else {
+                    console.error('Error uploading profile picture:', data.error);
+                }
+            } catch (error) {
+                console.error('Error uploading profile picture:', error);
+            }
+        }
+        const profilePicPath = localStorage.getItem('profilePicPath');
+        if (profilePicPath) {
+            const profilePicPreview = document.getElementById('profilePicPreview');
+            profilePicPreview.src = profilePicPath;
+        } else {
+            fetchProfilePic();
+        }
+
+        // function edit(field) {
+        //     const infoSpan = document.getElementById(`${field}Span`);
+        //     const inputElement = document.getElementById(`${field}Input`);
+
+        //     if (infoSpan.style.display === 'inline') {
+        //         infoSpan.style.display = 'none';
+        //         inputElement.style.display = 'inline';
+        //         inputElement.focus();
+        //     } else {
+        //         infoSpan.style.display = 'none';
+        //         inputElement.style.display = 'inline';
+        //         inputElement.focus();
+        //     }
+        // }
+
+
+        function edit(field) {
+            const infoSpan = document.getElementById(`${field}Span`);
+            const inputElement = document.getElementById(`${field}Input`);
+
+            infoSpan.style.display = 'none';
+            inputElement.style.display = 'inline';
+            inputElement.focus();
+        }
+
+         async function saveChanges() {
+
+            const usernameInput = document.getElementById('usernameInput');
+            const addInput = document.getElementById('addressInput');
+            const cityInput = document.getElementById('cityInput');
+            const contactInput = document.getElementById('contactInput');
+            const PasswordInput=document.getElementById('passwordInput')
+
+            const username = usernameInput.value;
+            const address = addInput.value;
+            const city = cityInput.value;
+            const contact = contactInput.value;
+            const password=PasswordInput.value;
+
+            const usernameSpan = document.getElementById('usernameSpan');
+            const addressSpan = document.getElementById('addressSpan');
+            const citySpan = document.getElementById('citySpan');
+            const contactSpan = document.getElementById('contactSpan');
+            const passwordSpan=document.getElementById('passwordSpan')
+
+
+            usernameSpan.innerText = username;
+            addressSpan.innerText = address;
+            citySpan.innerText = city;
+            contactSpan.innerText = contact;
+            passwordSpan.innerText=password;
+
+            // localStorage.setItem('username', username);
+            // localStorage.setItem('address', address);
+            // localStorage.setItem('city', city);
+            // localStorage.setItem('contact', contact);
+
+
+            const response =  await fetch("http://localhost:3000/api/change-profile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", // Set the content type to JSON
+                },
+                body: JSON.stringify({ name: username, address: address, city: city, phone: contact, password:password})
+            });
+
+            const responseData =  await response.json();
+            if (!responseData.success) {
+                const successMessage = document.createElement("div");
+                successMessage.classList.add("alert", "alert-danger", "my-3");
+                successMessage.setAttribute("role", "alert");
+                successMessage.textContent = responseData.msg;
+
+                // Append the alert to the form container
+                document.querySelector(".myalert").appendChild(successMessage);
+
+                // Remove the alert after 2 seconds (2000ms)
+                setTimeout(() => {
+                    successMessage.remove();
+                }, 2000);
+            }
+            else {
+                const successMessage = document.createElement("div");
+                successMessage.classList.add("alert", "alert-success", "my-3");
+                successMessage.setAttribute("role", "alert");
+                successMessage.textContent = "Changed!!"
+
+                // Append the alert to the form container
+                document.querySelector(".myalert").appendChild(successMessage);
+
+                // Remove the alert after 2 seconds (2000ms)
+                setTimeout(() => {
+                    successMessage.remove();
+                }, 3000);
+            }
+            // window.alert('Profile Updated');
+
+        }
+
+        function logout() {
+      const response = fetch("http://localhost:3000/auth/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Set the content type to JSON
+        },
+      });
+
+      window.location.href = "/login";
+    }
+
+        // window.onload = function () {
+        //     // const username = localStorage.getItem('username');
+        //     // const address = localStorage.getItem('address');
+        //     // const city = localStorage.getItem('city');
+        //     // const contact = localStorage.getItem('contact');
+
+        //     if (username) {
+        //         document.getElementById('usernameSpan').innerText = username;
+        //         document.getElementById('usernameInput').value = username;
+        //     }
+
+            
+
+        //     if (address) {
+        //         document.getElementById('addressSpan').innerText = address;
+        //         document.getElementById('addressInput').value = address;
+        //     }
+
+        //     if (city) {
+        //         document.getElementById('citySpan').innerText = city;
+        //         document.getElementById('cityInput').value = city;
+        //     }
+
+        //     if (contact) {
+        //         document.getElementById('contactSpan').innerText = contact;
+        //         document.getElementById('contactInput').value = contact;
+        //     }
+        // };
+    </script>
+</body>
+
+</html>
